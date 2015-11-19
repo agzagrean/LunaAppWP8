@@ -1,0 +1,99 @@
+﻿<UserControl x:Class="MonthlyCycleApp.Controls.CycleDropControl"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}" 
+             d:Height="585" d:Width="422">
+
+    <Grid x:Name="LayoutRoot">
+        <Grid.Background>
+            <ImageBrush ImageSource="/Assets/Images/drop-light.png" Stretch="Uniform"/>
+        </Grid.Background>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="60"/>
+        </Grid.RowDefinitions>
+        <Grid x:Name="drop" Height="475" Width="480"
+              d:LayoutRounding="Auto"  
+              Grid.Row="0"
+          HorizontalAlignment="Center" VerticalAlignment="Top">
+
+            <Grid  Canvas.Left="20"
+                       Clip="M 0 245.7729 C 0 314.3825 55.9635 370 125 370 C 194.0365 370 250 314.3825 250 245.7729 C 250 242.4642 249.8688 239.1856 249.6133 235.942 L 250 235.942 C 250 235.942 249.8147 235.2129 249.4334 233.8418 C 247.5212 213.8899 215.0901 142.9918 204.4364 123.3333 C 173.133 65.571 124.1007 0 124.1007 0 C 124.1007 0 52.7857 101.3329 31.7746 142.3993 C 13.789 177.5524 2.0386 219.8083 0.6835 232.7068 C 0.228 234.7934 0 235.942 0 235.942 L 0.3867 235.942 C 0.1312 239.1857 0 242.4648 0 245.7729 Z"            
+                       UseLayoutRounding="False" d:LayoutRounding="Auto" Margin="117,58,-117,-58"   >
+                    
+                <Grid.RenderTransform>
+                    <CompositeTransform Rotation="0.029"/>
+                </Grid.RenderTransform>
+                <Grid 
+                    Visibility="{Binding IsSetupCompleted}"
+                    Margin="-10,160,10,-160">
+                    <Path  x:Name="wave3"
+					Stretch="Fill" VerticalAlignment="Bottom"
+					Width="Auto" Height="311.298" 
+					Opacity="0.23" 
+					Data="M 8 33 L 8 572 L 941 571 C 941 571 940 67 942 11 C 942.5541 -4.5142 891 13 867 4 C 843 -5 781 4 757 11 C 733 18 704 18 670 10 C 636 2 575 30 553 15 C 541.9037 7.4344 492.3959 13.0982 446.045 20.57 C 430.132 17.7131 397.0096 25.6286 374 17 C 350 8 265 13 241 20 C 217 27 210 22 176 14 C 142 6 134 34 112 19 C 90 4 8 33 8 33 Z" 
+					Fill="#ff0000" RenderTransformOrigin="0.5,0.5" Margin="-37.002,0,102.056,105.85" UseLayoutRounding="False">
+                        <Path.RenderTransform>
+                            <CompositeTransform/>
+                        </Path.RenderTransform>
+
+                    </Path>
+                    <Path  x:Name="wave2"
+					Stretch="Fill" VerticalAlignment="Bottom" Height="362.089" 
+					Opacity="0.43" 
+					Data="M 8 33 L 8 572 L 941 571 C 941 571 940 67 942 11 C 942.5541 -4.5142 891 13 867 4 C 843 -5 781 4 757 11 C 733 18 704 18 670 10 C 636 2 575 30 553 15 C 541.9037 7.4344 492.3959 13.0982 446.045 20.57 C 430.132 17.7131 397.0096 25.6286 374 17 C 350 8 265 13 241 20 C 217 27 210 22 176 14 C 142 6 134 34 112 19 C 90 4 8 33 8 33 Z" 
+					Fill="#ee778f" RenderTransformOrigin="0.5,0.5"  UseLayoutRounding="False" Margin="-24.002,0,40.025,55.059">
+                        <Path.RenderTransform>
+                            <CompositeTransform/>
+                        </Path.RenderTransform>
+                    </Path>
+                    <Path  x:Name="wave1"
+					Stretch="Fill" VerticalAlignment="Bottom" Height="265.86" 
+					Opacity="0.63" 
+					Data="M 8 33 L 8 572 L 941 571 C 941 571 940 67 942 11 C 942.5541 -4.5142 891 13 867 4 C 843 -5 781 4 757 11 C 733 18 704 18 670 10 C 636 2 575 30 553 15 C 541.9037 7.4344 492.3959 13.0982 446.045 20.57 C 430.132 17.7131 397.0096 25.6286 374 17 C 350 8 265 13 241 20 C 217 27 210 22 176 14 C 142 6 134 34 112 19 C 90 4 8 33 8 33 Z" 
+					Fill="#eb667A" RenderTransformOrigin="0.5,0.5" Margin="-37.002,0,-238.38,137.486" UseLayoutRounding="False">
+                        <Path.RenderTransform>
+                            <CompositeTransform/>
+                        </Path.RenderTransform>
+                    </Path>
+                </Grid>
+            </Grid>
+
+            <StackPanel 
+                Height="230"   
+                HorizontalAlignment="Center" VerticalAlignment="Center" 
+                Margin="164,159,164,86"
+                >
+                <TextBlock Text="{Binding DaysToPeriod, Mode=OneWay}"
+                           Visibility="{Binding IsSetupCompleted}"
+                   HorizontalAlignment="Center" 
+                   FontSize="150"  Opacity="0.8"
+                   Foreground="White" Height="180"
+                  />
+                <TextBlock Text="{Binding Path=LocalizedResources.DaysToPeriodText, Source={StaticResource LocalizedStrings}, Mode=OneWay}"
+                            Visibility="{Binding IsSetupCompleted}"
+                   HorizontalAlignment="Center" 
+                   FontSize="24" Opacity="0.5"
+                   Foreground="White"/>
+            </StackPanel>
+
+            <Image Source="/Assets/Images/drop.png" Stretch="Uniform" Margin="10,0,-10,0" />
+
+            <Image Source="/Assets/Images/drop-highlight.png"
+                   Stretch="Uniform" Margin="173,59,43,115"/>
+
+        </Grid>
+        <TextBlock
+                   x:Name="tbToday"
+                   Text="{Binding Today}"
+                   DataContext="{Binding}" Grid.Row="1"
+                   HorizontalAlignment="Center" VerticalAlignment="Center"
+                   FontSize="36" Opacity="0.8"
+                   Foreground="White"/>
+    </Grid>
+</UserControl>

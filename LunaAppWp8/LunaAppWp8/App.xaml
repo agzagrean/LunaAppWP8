@@ -1,0 +1,470 @@
+﻿<Application 
+    x:Class="LunaAppWp8.App"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+    xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
+    xmlns:sys="clr-namespace:System;assembly=mscorlib">
+
+    <!--Application Resources-->
+    <Application.Resources>
+        <sys:Double x:Key="PanoramaItemHeaderFontSize">66</sys:Double>
+
+        
+        <!--Brushes-->
+        <SolidColorBrush x:Name="PinkColor" Color="#BF5279" />
+
+        <Style x:Key="PanoramaItemHeaderTextStyle" TargetType="TextBlock">
+            <Setter Property="FontFamily" Value="{StaticResource PhoneFontFamilySemiLight}"/>
+            <Setter Property="FontSize" Value="{StaticResource PanoramaItemHeaderFontSize}"/>
+            <Setter Property="CharacterSpacing" Value="-35"/>
+        </Style>
+
+        <Style TargetType="TextBlock" x:Key="settingsTBlLarge">
+            <Setter Property="FontFamily" Value="{StaticResource PhoneFontFamilySemiLight}"/>
+            <Setter Property="TextAlignment" Value="Left"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="FontSize" Value="30"/>          
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="TextWrapping" Value="Wrap"/>
+        </Style>
+
+        <Style TargetType="TextBlock" x:Key="settingsTBlTitle">
+            <Setter Property="FontFamily" Value="{StaticResource PhoneFontFamilySemiLight}"/>
+            <Setter Property="TextAlignment" Value="Left"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="FontSize" Value="26"/>
+            <Setter Property="Height" Value="40"/>
+            <Setter Property="Margin" Value="0,0,0,10" />
+            <Setter Property="TextWrapping" Value="Wrap"/>
+            <Setter Property="Foreground" Value="LightGray"/>
+            <Setter Property="Grid.ColumnSpan" Value="2"/>
+        </Style>
+        
+        <Style TargetType="TextBlock" x:Key="legendTBl">
+            <Setter Property="FontFamily" Value="{StaticResource PhoneFontFamilySemiLight}"/>
+            <Setter Property="TextAlignment" Value="Left"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="FontSize" Value="20"/>
+            <Setter Property="Width" Value="180"/>
+            <Setter Property="Margin" Value="0,0,0,10" />
+            <Setter Property="TextWrapping" Value="Wrap"/>
+            <Setter Property="Foreground" Value="LightGray"/>
+            <Setter Property="Grid.ColumnSpan" Value="2"/>
+        </Style>
+
+        <Style TargetType="CheckBox" x:Key="settingsCBLarge">
+            <Setter Property="FontFamily" Value="{StaticResource PhoneFontFamilySemiLight}"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="FontSize" Value="30"/>
+            <Setter Property="Height" Value="48"/>
+            <Setter Property="Foreground" Value="White"/>
+        </Style>
+
+        <Style TargetType="TextBox" x:Key="settingsTBoxLarge">
+            <Setter Property="FontFamily" Value="{StaticResource PhoneFontFamilySemiLight}"/>
+            <Setter Property="TextAlignment" Value="Center"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="FontSize" Value="30"/>
+            <Setter Property="Height" Value="80"/>
+            <Setter Property="Foreground" Value="Black"/>
+            <Setter Property="SelectionBackground" Value="#FFD96266" />
+        </Style>
+
+        <Style TargetType="TextBox" x:Key="pinTBoxLarge">
+            <Setter Property="FontFamily" Value="{StaticResource PhoneFontFamilySemiLight}"/>
+            <Setter Property="TextAlignment" Value="Left"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="FontSize" Value="30"/>
+            <Setter Property="Height" Value="50"/>
+            <Setter Property="Width" Value="150"/>
+            <Setter Property="Foreground" Value="Black"/>
+            <Setter Property="SelectionBackground" Value="#FFD96266" />
+        </Style>
+
+        <Style TargetType="TextBlock" x:Key="setupTBlExplanation">
+            <Setter Property="FontFamily" Value="{StaticResource PhoneFontFamilySemiLight}"/>
+            <Setter Property="TextAlignment" Value="Left"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="FontSize" Value="20"/>
+            <Setter Property="Height" Value="80"/>
+            <Setter Property="Margin" Value="10,0,0,0" />
+            <Setter Property="TextWrapping" Value="Wrap"/>
+            <Setter Property="Foreground" Value="{StaticResource PinkColor}"/>
+            <Setter Property="Opacity" Value="0.8"/>
+            <Setter Property="Grid.ColumnSpan" Value="2"/>
+        </Style>
+        
+        <Style TargetType="TextBlock" x:Key="settingsTBlExplanation">
+            <Setter Property="FontFamily" Value="{StaticResource PhoneFontFamilySemiLight}"/>
+            <Setter Property="TextAlignment" Value="Left"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="FontSize" Value="16"/>
+            <Setter Property="Margin" Value="30,85,0,0" />
+            <Setter Property="TextWrapping" Value="Wrap"/>
+            <Setter Property="Foreground" Value="Black"/>
+            <Setter Property="Opacity" Value="0.8"/>
+            <Setter Property="Grid.ColumnSpan" Value="2"/>
+        </Style>
+       
+        <Style TargetType="toolkit:ToggleSwitch" x:Key="toggleSwitch">
+            <Setter Property="HeaderTemplate">
+                <Setter.Value>
+                    <DataTemplate>
+                        <TextBlock FontFamily="{StaticResource PhoneFontFamilySemiLight}"
+                        FontSize="{StaticResource PhoneFontSizeMediumLarge}"
+                        Foreground="{StaticResource PinkColor}"
+                        TextWrapping="Wrap"
+                        Text="{Binding}" />
+                    </DataTemplate>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="Grid.ColumnSpan" Value="2"/>
+            <Setter Property="IsTabStop" Value="False"/>
+            <Setter Property="SwitchForeground" Value="{StaticResource PinkColor}"/>       
+            <Setter Property="Background" Value="White"/>
+        </Style>
+        
+        <Style TargetType="CheckBox" x:Key="checkBox">
+            <Setter Property="Foreground" Value="#FFD96266"/>
+            <Setter Property="Height" Value="400"/>
+            <Setter Property="Width" Value="Auto"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="ContentTemplate">
+                <Setter.Value>
+                    <DataTemplate>
+                        <TextBlock FontFamily="{StaticResource PhoneFontFamilySemiLight}"
+                                            FontSize="24"
+                                            Margin="0,-10,0,0"
+                                            Foreground="{StaticResource PhoneSubtleBrush}"
+                                            Height="Auto" Width="Auto"
+                                            TextWrapping="Wrap"
+                                            Text="{Binding}" />     
+                    </DataTemplate>
+                </Setter.Value> 
+            </Setter>
+
+        </Style>
+        <local:LocalizedStrings xmlns:local="clr-namespace:LunaAppWp8" x:Key="LocalizedStrings"/>
+
+        <Style TargetType="toolkit:ListPicker" x:Key="listPicker">
+            <Setter Property="HeaderTemplate">
+                <Setter.Value>
+                    <DataTemplate>
+                        <TextBlock FontFamily="{StaticResource PhoneFontFamilySemiLight}"
+                        FontSize="{StaticResource PhoneFontSizeMediumLarge}"
+                        Foreground="{StaticResource PinkColor}"
+                        TextWrapping="Wrap"
+                        Text="{Binding}" />
+                    </DataTemplate>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="Grid.ColumnSpan" Value="2"/>
+            <Setter Property="IsTabStop" Value="False"/>
+            <Setter Property="Foreground" Value="{StaticResource PinkColor}"/>
+            <Setter Property="Background" Value="White"/>
+        </Style>
+
+        <Style TargetType="ListBox" x:Key="listBoxStyle">
+            <!--<Setter Property="HeaderTemplate">
+                <Setter.Value>
+                    <DataTemplate>
+                        <TextBlock FontFamily="{StaticResource PhoneFontFamilySemiLight}"
+                        FontSize="{StaticResource PhoneFontSizeMediumLarge}"
+                        Foreground="{StaticResource PinkColor}"
+                        TextWrapping="Wrap"
+                        Text="{Binding}" />
+                    </DataTemplate>
+                </Setter.Value>
+            </Setter>-->
+            <Setter Property="Grid.ColumnSpan" Value="2"/>
+            <Setter Property="IsTabStop" Value="False"/>
+            <Setter Property="Foreground" Value="{StaticResource PinkColor}"/>
+            <Setter Property="Background" Value="White"/>
+        </Style>
+
+   
+        <Style TargetType="toolkit:ExpanderView"  x:Key="expanderViewStyle">
+            <Setter Property="Grid.ColumnSpan" Value="2"/>
+            <Setter Property="IsTabStop" Value="False"/> 
+            
+            <Setter Property="HorizontalAlignment" Value="Stretch"/>
+            <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+            <Setter Property="ItemsPanel">
+                <Setter.Value>
+                    <ItemsPanelTemplate>
+                        <StackPanel/>
+                    </ItemsPanelTemplate>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="toolkit:ExpanderView">
+                        <Grid>
+                            <Grid.Resources>
+                                <QuadraticEase x:Key="QuadraticEaseOut" EasingMode="EaseOut"/>
+                                <QuadraticEase x:Key="QuadraticEaseInOut" EasingMode="EaseInOut"/>
+                            </Grid.Resources>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="41"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+                            <VisualStateManager.VisualStateGroups>
+                                <VisualStateGroup x:Name="ExpansionStates">
+                                    <VisualStateGroup.Transitions>
+                                        <VisualTransition From="Collapsed" GeneratedDuration="0:0:0.15" To="Expanded">
+                                            <Storyboard>
+                                                <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Height)" Storyboard.TargetName="ItemsCanvas">
+                                                    <EasingDoubleKeyFrame EasingFunction="{StaticResource QuadraticEaseOut}" KeyTime="0:0:0.00" Value="0"/>
+                                                    <EasingDoubleKeyFrame x:Name="CollapsedToExpandedKeyFrame" EasingFunction="{StaticResource QuadraticEaseOut}" KeyTime="0:0:0.15" Value="1"/>
+                                                </DoubleAnimationUsingKeyFrames>
+                                                <DoubleAnimation Duration="0" To="1.0" Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="ItemsCanvas"/>
+                                            </Storyboard>
+                                        </VisualTransition>
+                                        <VisualTransition From="Expanded" GeneratedDuration="0:0:0.15" To="Collapsed">
+                                            <Storyboard>
+                                                <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Height)" Storyboard.TargetName="ItemsCanvas">
+                                                    <EasingDoubleKeyFrame x:Name="ExpandedToCollapsedKeyFrame" EasingFunction="{StaticResource QuadraticEaseInOut}" KeyTime="0:0:0.00" Value="1"/>
+                                                    <EasingDoubleKeyFrame EasingFunction="{StaticResource QuadraticEaseInOut}" KeyTime="0:0:0.15" Value="0"/>
+                                                </DoubleAnimationUsingKeyFrames>
+                                                <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="ItemsCanvas">
+                                                    <EasingDoubleKeyFrame EasingFunction="{StaticResource QuadraticEaseInOut}" KeyTime="0:0:0.00" Value="1.0"/>
+                                                    <EasingDoubleKeyFrame EasingFunction="{StaticResource QuadraticEaseInOut}" KeyTime="0:0:0.15" Value="0.0"/>
+                                                </DoubleAnimationUsingKeyFrames>
+                                                <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateY)" Storyboard.TargetName="ItemsCanvas">
+                                                    <EasingDoubleKeyFrame EasingFunction="{StaticResource QuadraticEaseInOut}" KeyTime="0:0:0.00" Value="0.0"/>
+                                                    <EasingDoubleKeyFrame EasingFunction="{StaticResource QuadraticEaseInOut}" KeyTime="0:0:0.15" Value="-35"/>
+                                                </DoubleAnimationUsingKeyFrames>
+                                            </Storyboard>
+                                        </VisualTransition>
+                                    </VisualStateGroup.Transitions>
+                                    <VisualState x:Name="Collapsed">
+                                        <Storyboard>
+                                            <DoubleAnimation Duration="0" To="0" Storyboard.TargetProperty="(FrameworkElement.Height)" Storyboard.TargetName="ItemsCanvas"/>
+                                            <DoubleAnimation Duration="0" To="0.0" Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="ItemsCanvas"/>
+                                        </Storyboard>
+                                    </VisualState>
+                                    <VisualState x:Name="Expanded">
+                                        <Storyboard>
+                                            <DoubleAnimation Duration="0" Storyboard.TargetProperty="(FrameworkElement.Height)" Storyboard.TargetName="ItemsCanvas"/>
+                                            <DoubleAnimation Duration="0" To="1.0" Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="ItemsCanvas"/>
+                                        </Storyboard>
+                                    </VisualState>
+                                </VisualStateGroup>
+                                <VisualStateGroup x:Name="ExpandabilityStates">
+                                    <VisualState x:Name="Expandable"/>
+                                    <VisualState x:Name="NonExpandable">
+                                        <Storyboard>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="ExpandableContent">
+                                                <DiscreteObjectKeyFrame KeyTime="0:0:0.0" Value="Collapsed"/>
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="Line">
+                                                <DiscreteObjectKeyFrame KeyTime="0:0:0.0" Value="Collapsed"/>
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="NonExpandableContent">
+                                                <DiscreteObjectKeyFrame KeyTime="0:0:0.0" Value="Visible"/>
+                                            </ObjectAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </VisualState>
+                                </VisualStateGroup>
+                            </VisualStateManager.VisualStateGroups>
+                            <ListBoxItem x:Name="ExpandableContent" Grid.ColumnSpan="2" Grid.Column="0" toolkit:TiltEffect.IsTiltEnabled="True" Grid.Row="0" Grid.RowSpan="2">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="41"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                    </Grid.RowDefinitions>
+                                    <ContentControl x:Name="Header" Grid.ColumnSpan="2" ContentTemplate="{TemplateBinding HeaderTemplate}" Content="{TemplateBinding Header}" Grid.Column="0" HorizontalAlignment="Stretch" HorizontalContentAlignment="Stretch" Grid.Row="0"/>
+                                    <ContentControl x:Name="Expander" ContentTemplate="{TemplateBinding ExpanderTemplate}" Content="{TemplateBinding Expander}" 
+                                                    Grid.Column="1" HorizontalAlignment="Stretch" HorizontalContentAlignment="Stretch" Margin="11,0,0,0" Grid.Row="1"/>
+                                    <Grid x:Name="ExpanderPanel" Background="Transparent" Grid.ColumnSpan="2" Grid.Column="0" Grid.Row="0" Grid.RowSpan="2"/>
+                                </Grid>
+                            </ListBoxItem>
+                            
+                            <ContentControl x:Name="NonExpandableContent" Grid.ColumnSpan="2" ContentTemplate="{TemplateBinding NonExpandableHeaderTemplate}" Content="{TemplateBinding NonExpandableHeader}" Grid.Column="0" HorizontalAlignment="Stretch" HorizontalContentAlignment="Stretch" Grid.Row="0" Grid.RowSpan="2" Visibility="Collapsed"/>
+                            <Canvas x:Name="ItemsCanvas" Grid.Column="1" Margin="11,0,0,0" Opacity="0.0" Grid.Row="2">
+                                <Canvas.RenderTransform>
+                                    <CompositeTransform TranslateY="0.0"/>
+                                </Canvas.RenderTransform>
+                                <ItemsPresenter x:Name="Presenter"/>
+                            </Canvas>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="ItemTemplate">
+                <Setter.Value>
+                <DataTemplate>
+                        <ListBoxItem 
+                            toolkit:TiltEffect.IsTiltEnabled="True" 
+                            DataContext="{Binding}" 
+                            Tap="ExpandedItem_Tap">
+                            <StackPanel>
+                                <TextBlock Text="{Binding ReccurenceName}" 
+                                                       FontSize="{StaticResource PhoneFontSizeSmall}"
+                                                       VerticalAlignment="Center"/>
+                            </StackPanel>
+                        </ListBoxItem>
+                    </DataTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style TargetType="toolkit:ExpanderView"  x:Key="expanderViewStyleAbout">
+            <Setter Property="Grid.ColumnSpan" Value="2"/>
+            <Setter Property="IsTabStop" Value="False"/>
+
+            <Setter Property="HorizontalAlignment" Value="Stretch"/>
+            <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+            <Setter Property="ItemsPanel">
+                <Setter.Value>
+                    <ItemsPanelTemplate>
+                        <StackPanel/>
+                    </ItemsPanelTemplate>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="toolkit:ExpanderView">
+                        <Grid>
+                            <Grid.Resources>
+                                <QuadraticEase x:Key="QuadraticEaseOut" EasingMode="EaseOut"/>
+                                <QuadraticEase x:Key="QuadraticEaseInOut" EasingMode="EaseInOut"/>
+                            </Grid.Resources>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="41"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+                            <VisualStateManager.VisualStateGroups>
+                                <VisualStateGroup x:Name="ExpansionStates">
+                                    <VisualStateGroup.Transitions>
+                                        <VisualTransition From="Collapsed" GeneratedDuration="0:0:0.15" To="Expanded">
+                                            <Storyboard>
+                                                <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Height)" Storyboard.TargetName="ItemsCanvas">
+                                                    <EasingDoubleKeyFrame EasingFunction="{StaticResource QuadraticEaseOut}" KeyTime="0:0:0.00" Value="0"/>
+                                                    <EasingDoubleKeyFrame x:Name="CollapsedToExpandedKeyFrame" EasingFunction="{StaticResource QuadraticEaseOut}" KeyTime="0:0:0.15" Value="1"/>
+                                                </DoubleAnimationUsingKeyFrames>
+                                                <DoubleAnimation Duration="0" To="1.0" Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="ItemsCanvas"/>
+                                            </Storyboard>
+                                        </VisualTransition>
+                                        <VisualTransition From="Expanded" GeneratedDuration="0:0:0.15" To="Collapsed">
+                                            <Storyboard>
+                                                <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Height)" Storyboard.TargetName="ItemsCanvas">
+                                                    <EasingDoubleKeyFrame x:Name="ExpandedToCollapsedKeyFrame" EasingFunction="{StaticResource QuadraticEaseInOut}" KeyTime="0:0:0.00" Value="1"/>
+                                                    <EasingDoubleKeyFrame EasingFunction="{StaticResource QuadraticEaseInOut}" KeyTime="0:0:0.15" Value="0"/>
+                                                </DoubleAnimationUsingKeyFrames>
+                                                <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="ItemsCanvas">
+                                                    <EasingDoubleKeyFrame EasingFunction="{StaticResource QuadraticEaseInOut}" KeyTime="0:0:0.00" Value="1.0"/>
+                                                    <EasingDoubleKeyFrame EasingFunction="{StaticResource QuadraticEaseInOut}" KeyTime="0:0:0.15" Value="0.0"/>
+                                                </DoubleAnimationUsingKeyFrames>
+                                                <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateY)" Storyboard.TargetName="ItemsCanvas">
+                                                    <EasingDoubleKeyFrame EasingFunction="{StaticResource QuadraticEaseInOut}" KeyTime="0:0:0.00" Value="0.0"/>
+                                                    <EasingDoubleKeyFrame EasingFunction="{StaticResource QuadraticEaseInOut}" KeyTime="0:0:0.15" Value="-35"/>
+                                                </DoubleAnimationUsingKeyFrames>
+                                            </Storyboard>
+                                        </VisualTransition>
+                                    </VisualStateGroup.Transitions>
+                                    <VisualState x:Name="Collapsed">
+                                        <Storyboard>
+                                            <DoubleAnimation Duration="0" To="0" Storyboard.TargetProperty="(FrameworkElement.Height)" Storyboard.TargetName="ItemsCanvas"/>
+                                            <DoubleAnimation Duration="0" To="0.0" Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="ItemsCanvas"/>
+                                        </Storyboard>
+                                    </VisualState>
+                                    <VisualState x:Name="Expanded">
+                                        <Storyboard>
+                                            <DoubleAnimation Duration="0" Storyboard.TargetProperty="(FrameworkElement.Height)" Storyboard.TargetName="ItemsCanvas"/>
+                                            <DoubleAnimation Duration="0" To="1.0" Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="ItemsCanvas"/>
+                                        </Storyboard>
+                                    </VisualState>
+                                </VisualStateGroup>
+                                <VisualStateGroup x:Name="ExpandabilityStates">
+                                    <VisualState x:Name="Expandable"/>
+                                    <VisualState x:Name="NonExpandable">
+                                        <Storyboard>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="ExpandableContent">
+                                                <DiscreteObjectKeyFrame KeyTime="0:0:0.0" Value="Collapsed"/>
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="Line">
+                                                <DiscreteObjectKeyFrame KeyTime="0:0:0.0" Value="Collapsed"/>
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="NonExpandableContent">
+                                                <DiscreteObjectKeyFrame KeyTime="0:0:0.0" Value="Visible"/>
+                                            </ObjectAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </VisualState>
+                                </VisualStateGroup>
+                            </VisualStateManager.VisualStateGroups>
+                            <ListBoxItem x:Name="ExpandableContent" Grid.ColumnSpan="2" Grid.Column="0" toolkit:TiltEffect.IsTiltEnabled="True" Grid.Row="0" Grid.RowSpan="2">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="41"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                    </Grid.RowDefinitions>
+                                    <ContentControl x:Name="Header" Grid.ColumnSpan="2" ContentTemplate="{TemplateBinding HeaderTemplate}" Content="{TemplateBinding Header}" Grid.Column="0" HorizontalAlignment="Stretch" HorizontalContentAlignment="Stretch" Grid.Row="0"/>
+                                    <ContentControl x:Name="Expander" ContentTemplate="{TemplateBinding ExpanderTemplate}" Content="{TemplateBinding Expander}" 
+                                                    Grid.Column="1" HorizontalAlignment="Stretch" HorizontalContentAlignment="Stretch" Margin="11,0,0,0" Grid.Row="1"/>
+                                    <Grid x:Name="ExpanderPanel" Background="Transparent" Grid.ColumnSpan="2" Grid.Column="0" Grid.Row="0" Grid.RowSpan="2"/>
+                                </Grid>
+                            </ListBoxItem>
+
+                            <ContentControl x:Name="NonExpandableContent" Grid.ColumnSpan="2" ContentTemplate="{TemplateBinding NonExpandableHeaderTemplate}" Content="{TemplateBinding NonExpandableHeader}" Grid.Column="0" HorizontalAlignment="Stretch" HorizontalContentAlignment="Stretch" Grid.Row="0" Grid.RowSpan="2" Visibility="Collapsed"/>
+                            <Canvas x:Name="ItemsCanvas" Grid.Column="1" Margin="11,0,0,0" Opacity="0.0" Grid.Row="2">
+                                <Canvas.RenderTransform>
+                                    <CompositeTransform TranslateY="0.0"/>
+                                </Canvas.RenderTransform>
+                                <ItemsPresenter x:Name="Presenter"/>
+                            </Canvas>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="ItemTemplate">
+                <Setter.Value>
+                    <DataTemplate>
+                        <ListBoxItem 
+                            toolkit:TiltEffect.IsTiltEnabled="False" 
+                            DataContext="{Binding}" 
+                            Tap="ExpandedItem_Tap">
+                            <StackPanel>
+                                <TextBlock Text="{Binding Text}" 
+                                           TextWrapping="Wrap"
+                                           FontSize="{StaticResource PhoneFontSizeSmall}"
+                                           VerticalAlignment="Center"/>
+                            </StackPanel>
+                        </ListBoxItem>
+                    </DataTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Application.Resources>
+
+    <Application.ApplicationLifetimeObjects>
+        <!--Required object that handles lifetime events for the application-->
+        <shell:PhoneApplicationService 
+            Launching="Application_Launching" Closing="Application_Closing" 
+            Activated="Application_Activated" Deactivated="Application_Deactivated"/>
+    </Application.ApplicationLifetimeObjects>
+
+</Application>

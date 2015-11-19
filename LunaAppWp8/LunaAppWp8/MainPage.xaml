@@ -1,0 +1,550 @@
+﻿<phone:PhoneApplicationPage
+    x:Class="LunaAppWp8.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:wpcontrols="clr-namespace:WPControls;assembly=WPControls"
+    xmlns:controls ="clr-namespace:LunaAppWp8.Controls"
+    xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
+    xmlns:converters="clr-namespace:LunaAppWp8.Converters"
+    xmlns:sparrow="clr-namespace:Sparrow.Chart;assembly=Sparrow.Chart.WP8.45"
+    mc:Ignorable="d"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    SupportedOrientations="Portrait"  Orientation="Portrait"
+    shell:SystemTray.IsVisible="False">
+    <phone:PhoneApplicationPage.Resources>
+        <converters:ColorConverter x:Name="ColorConverter"/>
+        <converters:EnumConverter x:Name="EnumConverter"/>
+        <converters:BoolToVisibilityConverter x:Name="BoolToVisibilityConverter"/>
+        <converters:StringToVisibilityConverter x:Name="StringToVisibilityConverter"/>
+        <converters:IntToVisibilityConverter x:Name="IntToVisibilityConverter"/>
+    </phone:PhoneApplicationPage.Resources>
+
+    <!--LayoutRoot is the root grid where all page content is placed-->
+    <Grid x:Name="LayoutRoot" >
+        <Grid.Background>
+            <ImageBrush ImageSource="/LunaAppWp8;component/Assets/PivotBg.jpg"/>
+        </Grid.Background>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="100"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="150"/>
+        </Grid.RowDefinitions>
+        <Image x:Name="imgTopGradient" Source="/Assets/Images/PivotShadow-Top.png" 
+               Grid.Row="0" Grid.RowSpan="2" Stretch="Fill"/>
+        <Grid Grid.Row="0" HorizontalAlignment="Left" x:Name="TitleGrid">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <Image Source="/Assets/ApplicationIcon.png" 
+                       Height="100" Grid.Column="0"
+                       Margin="0,10,0,0" />
+            <TextBlock  Grid.Column="1"
+                Text="{Binding Path=LocalizedResources.ApplicationTitle, Source={StaticResource LocalizedStrings}}"
+                Margin="0,-10,0,0"
+                FontSize="90"  />
+        </Grid>
+        <phone:Pivot x:Name="panoramaControl" Grid.RowSpan="4" Grid.Row="0"
+                        Loaded="panoramaControl_Loaded">
+            <!--Drop-->
+            <phone:PivotItem x:Name="DropPage" >
+                <controls:LunaDropControl x:Name="dropControl" />
+            </phone:PivotItem>
+
+            <!--Calendar-->
+            <phone:PivotItem Margin="0,150,0,0">
+                <Grid Margin="0,0,0,0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="0.7*"/>
+                        <RowDefinition Height="50"/>
+                        <RowDefinition Height="0.3*"/>
+                    </Grid.RowDefinitions>
+                    <wpcontrols:Calendar 
+                                x:Name="Cal"
+                                Grid.Row="0"
+                                StartingDayOfWeek="{Binding FirstDayOfWeek}"
+                                ColorConverter="{StaticResource ColorConverter}"
+                                EnableGestures="False"
+                    />
+                    <TextBlock Margin="35,0,0,0"
+                               Text="{Binding Path=LocalizedResources.Legend, Source={StaticResource LocalizedStrings}}" 
+                               Style="{StaticResource settingsTBlTitle}"
+                               Foreground="{StaticResource PinkColor}"
+                               VerticalAlignment="Center"
+                               Grid.Row="1"
+                               Opacity="0.75"/>
+                    <Grid 
+                          Opacity="0.75"
+                          Grid.Row="2"
+                        Width="410"
+                          HorizontalAlignment="Center">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="50" />
+                            <RowDefinition Height="50" />
+                            <RowDefinition Height="50" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="30"/>
+                            <ColumnDefinition Width="180"/>
+                            <ColumnDefinition Width="30"/>
+                            <ColumnDefinition Width="30"/>
+                            <ColumnDefinition Width="150"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Image Source="Assets/Images/CycleDay.png"
+                               Grid.Row="0" Grid.Column="0"/>
+                        <TextBlock Text="{Binding Path=LocalizedResources.MenstruationDay, Source={StaticResource LocalizedStrings}}" 
+                                   Style="{StaticResource legendTBl}"
+                                   VerticalAlignment="Center"
+                                   Grid.Row="0" Grid.Column="1" />
+                        <Image Source="Assets/Images/FertilityDay.png" 
+                               Grid.Row="1" Grid.Column="0"/>
+                        <TextBlock Text="{Binding Path=LocalizedResources.FertilityDay, Source={StaticResource LocalizedStrings}}" 
+                                   Style="{StaticResource legendTBl}"
+                                   VerticalAlignment="Center"
+                                   Grid.Row="1" Grid.Column="1" />
+                        <Image Source="Assets/Images/OvulationDay.png" 
+                               Grid.Row="0" Grid.Column="3"/>
+                        <TextBlock Text="{Binding Path=LocalizedResources.OvulationDay, Source={StaticResource LocalizedStrings}}" 
+                                   Style="{StaticResource legendTBl}"
+                                   VerticalAlignment="Center"
+                                   Grid.Row="0" Grid.Column="4" />
+                    </Grid>
+                </Grid>
+
+            </phone:PivotItem>
+
+            <!--About-->
+            <phone:PivotItem>
+                <Grid Margin="0,80,0,0" >
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="80"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <TextBlock FontFamily="{StaticResource PhoneFontFamilySemiLight}"
+                        Grid.Row="0" Height="800"
+                        CharacterSpacing="1"
+                        FontSize="{StaticResource PhoneFontSizeExtraLarge}"
+                        Foreground="{StaticResource PinkColor}"
+                        TextWrapping="Wrap"
+                        Text="{Binding Path=LocalizedResources.AboutHeader, Source={StaticResource LocalizedStrings}}" />
+
+                    <ScrollViewer Grid.Row="1">
+                            <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="40"/>
+                                <RowDefinition Height="40"/>
+                                <RowDefinition Height="80"/>
+                                <RowDefinition Height="80"/>
+
+                                <RowDefinition Height="80"/>
+                            </Grid.RowDefinitions>
+                            <RichTextBox                  
+                                Grid.Row="0"
+                                ScrollViewer.VerticalScrollBarVisibility="Auto"
+                                CharacterSpacing="1"
+                                VerticalAlignment="Top" 
+                                VerticalContentAlignment="Top" 
+                                HorizontalContentAlignment="Stretch"
+                                FontStretch="Expanded"
+                                FontSize="{StaticResource PhoneFontSizeMediumLarge}"
+                                Foreground="{StaticResource PhoneSubtleBrush}"                       
+                                LineStackingStrategy="MaxHeight">
+                            <RichTextBox.Blocks>
+                                <Paragraph x:Name="p1">
+                                    <Run FontStretch="SemiExpanded" Text="{Binding Path=LocalizedResources.AboutContent1, Source={StaticResource LocalizedStrings}}"/>
+                                </Paragraph>
+                                    <Paragraph x:Name="p2">
+                                        <Run FontStretch="SemiExpanded" Text="{Binding Path=LocalizedResources.AboutContent2, Source={StaticResource LocalizedStrings}}"/>
+                                    </Paragraph>
+                            </RichTextBox.Blocks>
+                        </RichTextBox>
+
+                            <toolkit:ExpanderView x:Name="expanderFeatures"
+                                                Grid.Row="1" 
+                                                Header=""
+                                                Margin="12,0,0,0"
+                                                ItemsSource="{Binding Features}"
+                                                Style="{StaticResource expanderViewStyleAbout}"
+                                                Tap="expandFeaturesPermissions_Tap">
+                                <toolkit:ExpanderView.HeaderTemplate>
+                                    <DataTemplate>
+                                        
+                                        <TextBlock FontFamily="{StaticResource PhoneFontFamilySemiLight}"
+                                                    FontSize="{StaticResource PhoneFontSizeMediumLarge}"
+                                                    Foreground="{StaticResource PinkColor}"
+                                                    TextWrapping="Wrap"
+                                                    Text="Features"  
+                                                    TextDecorations="Underline"/>
+                                    </DataTemplate>
+                                </toolkit:ExpanderView.HeaderTemplate>
+                            </toolkit:ExpanderView>
+                            <toolkit:ExpanderView x:Name="expanderPermissions"
+                                                Grid.Row="2" 
+                                                Header=""
+                                                Margin="12,0,0,0"
+                                                ItemsSource="{Binding Permissions}"
+                                                Style="{StaticResource expanderViewStyleAbout}"
+                                                Tap="expandFeaturesPermissions_Tap">
+                                <toolkit:ExpanderView.HeaderTemplate>
+                                    <DataTemplate>
+                                        <TextBlock FontFamily="{StaticResource PhoneFontFamilySemiLight}"
+                                                    FontSize="{StaticResource PhoneFontSizeMediumLarge}"
+                                                    Foreground="{StaticResource PinkColor}"
+                                                    TextWrapping="Wrap"
+                                                    Text="Permissions"  
+                                                    TextDecorations="Underline"/>
+                                    </DataTemplate>
+                                </toolkit:ExpanderView.HeaderTemplate>
+                            </toolkit:ExpanderView>
+                            <Button x:Name="btnRate" 
+                                    Grid.Row="3"
+                                        Content="{Binding Path=LocalizedResources.RateItButtonContent, Source={StaticResource LocalizedStrings}}" 
+                                        Click="btnRate_Click" />
+                                <Button x:Name="btnShare" 
+                                          Grid.Row="4"
+                                        Content="{Binding Path=LocalizedResources.ShareItButtonContent, Source={StaticResource LocalizedStrings}}" 
+                                        Click="btnShare_Click" />
+                                <Line Height="120"/>
+                            </Grid>
+                    </ScrollViewer>
+                    
+                </Grid>
+            </phone:PivotItem>
+
+            <!--Settings-->
+            <phone:PivotItem 
+                 Margin="0,150,0,0">
+                <ScrollViewer x:Name="settingsScroll">
+                        <Grid x:Name="SettingsGrid"  Margin="20,0,20,0" 
+                        ScrollViewer.VerticalScrollBarVisibility="Visible">
+                            <Grid.RowDefinitions>
+                                <!--0-->
+                                <RowDefinition Height="130"/>
+                                <RowDefinition Height="8*"/>
+                                <RowDefinition Height="130"/>
+                                <RowDefinition Height="8*"/>
+                                <RowDefinition Height="130"/>
+                                <!--5-->
+                                <RowDefinition Height="8*"/>
+                                <RowDefinition Height="80"/>
+                                <RowDefinition Height="80"/>
+                                <RowDefinition Height="110"/>
+                                <RowDefinition Height="110"/>
+                                <!--10-->
+                                <RowDefinition Height="130"/>
+                                <RowDefinition Height="130"/>
+                                <RowDefinition Height="110"/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="6*"/>
+                                <ColumnDefinition Width="4*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <!--Pill alarm-->
+                            <toolkit:ToggleSwitch x:Name="toggleBtnPillAllarm" 
+                                      Style="{StaticResource toggleSwitch}"
+                                      Grid.Row="0"
+                                      Header="{Binding Path=LocalizedResources.PillAllarmText, Source={StaticResource LocalizedStrings}}"
+                                      Content="{Binding Path=LocalizedResources.Off, Source={StaticResource LocalizedStrings}}"
+                                      IsChecked="{Binding IsPillAllarmOn, Mode=TwoWay}"
+                                      Checked="toggleBtnPillAllarm_CheckedUnchecked"
+                                      Unchecked="toggleBtnPillAllarm_CheckedUnchecked"   
+                                      Loaded="toggleBtnPillAllarm_CheckedUnchecked"
+                                      />
+                            <TextBlock x:Name="toggleBtnPillAllarmExplanation" Grid.ColumnSpan="2"
+                                    Grid.Row="0"
+                                    Style="{StaticResource settingsTBlExplanation}"
+                                    Text="{Binding Path=LocalizedResources.PillAlarmExplanation, Source={StaticResource LocalizedStrings}}" />
+
+                            <Grid x:Name="toggleBtnPillAllarmTimePanel"
+                                    Margin="30,0,0,0" Height="80"
+                                    Grid.ColumnSpan="2" Grid.Row="1" Grid.Column="0">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition />
+                                    <ColumnDefinition />
+                                </Grid.ColumnDefinitions>
+                                <TextBlock x:Name="tbAlarmTimeText" 
+                                       HorizontalAlignment="Right"
+                                        Text="{Binding Path=LocalizedResources.PillAllarmTimeText, Source={StaticResource LocalizedStrings}}" 
+                                        Style="{StaticResource settingsTBlLarge}"  FontSize="24"/>
+                                <toolkit:TimePicker x:Name="alarmTimePicker" 
+                            	Width="150" HorizontalAlignment="Right" Grid.Column="1"
+                                GotFocus="timePicker_GotFocus"
+                                ManipulationCompleted="timePicker_ManipulationCompleted"
+                            	Value="{Binding TakePillHour, Mode=TwoWay}"                             
+                            	/>
+                            </Grid>
+
+                            <!--Menstruation alarm-->
+                            <toolkit:ToggleSwitch x:Name="toggleBtnMenstruationAllarm" 
+                                      Style="{StaticResource toggleSwitch}"
+                                      Grid.Row="2"
+                                      Header="{Binding Path=LocalizedResources.MenstruationAllarmText, Source={StaticResource LocalizedStrings}}"
+                                      Content="{Binding Path=LocalizedResources.Off, Source={StaticResource LocalizedStrings}}"
+                                      IsChecked="{Binding IsMenstruationAllarmOn, Mode=TwoWay}"
+                                      Checked="toggleBtnPillAllarm_CheckedUnchecked"
+                                      Unchecked="toggleBtnPillAllarm_CheckedUnchecked"   
+                                      Loaded="toggleBtnPillAllarm_CheckedUnchecked"
+                                      IsEnabled="{Binding ShowMensOvulAlarmOption}"
+                                      />
+
+                            <TextBlock x:Name="toggleBtnMenstruationAllarmExplanation" 
+                                Grid.Row="2"
+                                Style="{StaticResource settingsTBlExplanation}"
+                                Text="{Binding Path=LocalizedResources.PillAlarmExplanation, Source={StaticResource LocalizedStrings}}" />
+
+                            <Grid x:Name="toggleBtnMenstruationAllarmTimePanel"                                 
+                                    Margin="30,0,0,0" Height="80"
+                                    Grid.ColumnSpan="2" Grid.Row="3" >
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition />
+                                    <ColumnDefinition />
+                                </Grid.ColumnDefinitions>
+                                <TextBlock x:Name="tMenstruationTimeText" Grid.Column="0"
+                                       HorizontalAlignment="Right"
+                                        Text="{Binding Path=LocalizedResources.PillAllarmTimeText, Source={StaticResource LocalizedStrings}}" 
+                                        Style="{StaticResource settingsTBlLarge}"  FontSize="24"/>
+                                <toolkit:TimePicker x:Name="menstruationTimePicker" 
+                                            Width="150" HorizontalAlignment="Right" Grid.Column="1"
+                                            Value="{Binding MenstruationAlarmHour,Mode=TwoWay}"      
+                                           GotFocus="timePicker_GotFocus"
+                                            ManipulationCompleted="timePicker_ManipulationCompleted"
+                                            />
+                            </Grid>
+
+                            <!--Ovulation alarm-->
+                            <toolkit:ToggleSwitch x:Name="toggleBtnOvulationAllarm" 
+                                      Style="{StaticResource toggleSwitch}"
+                                      Grid.Row="4"
+                                      Header="{Binding Path=LocalizedResources.OvulationAllarmText, Source={StaticResource LocalizedStrings}}"
+                                      Content="{Binding Path=LocalizedResources.Off, Source={StaticResource LocalizedStrings}}"
+                                      IsChecked="{Binding IsOvulationAllarmOn, Mode=TwoWay}"
+                                      Checked="toggleBtnPillAllarm_CheckedUnchecked"
+                                      Unchecked="toggleBtnPillAllarm_CheckedUnchecked"   
+                                      Loaded="toggleBtnPillAllarm_CheckedUnchecked"
+                                      IsEnabled="{Binding ShowMensOvulAlarmOption}"
+                                      />
+                          
+                            <TextBlock x:Name="toggleBtnOvulationAllarmExplanation" 
+                                Grid.Row="4"
+                                Style="{StaticResource settingsTBlExplanation}"
+                                Text="{Binding Path=LocalizedResources.PillAlarmExplanation, Source={StaticResource LocalizedStrings}}" />
+
+                            <Grid x:Name="toggleBtnOvulationAllarmTimePanel"
+                                    Margin="30,0,0,0" Height="80"
+                                    Grid.ColumnSpan="2" Grid.Row="5" >
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition />
+                                    <ColumnDefinition />
+                                </Grid.ColumnDefinitions>
+                                <TextBlock x:Name="tbOvulationTimeText" Grid.Column="0"
+                                       HorizontalAlignment="Right"
+                                        Text="{Binding Path=LocalizedResources.PillAllarmTimeText, Source={StaticResource LocalizedStrings}}" 
+                                        Style="{StaticResource settingsTBlLarge}"  FontSize="24"/>
+                                <toolkit:TimePicker x:Name="ovulationTimePicker" 
+                                                Width="150"
+                                                HorizontalAlignment="Right"
+                                                Grid.Column="1"
+                                                Value="{Binding OvulationAlarmHour,Mode=TwoWay}" 
+                                                GotFocus="timePicker_GotFocus"
+                                                ManipulationCompleted="timePicker_ManipulationCompleted"
+                                                />
+                            </Grid>
+
+                            <!--Gyne reminder -->
+                            <toolkit:ExpanderView x:Name="expanderGyne"
+                                                Grid.Row="6" 
+                                                Grid.ColumnSpan="2" 
+                                                Grid.Column="0"
+                                                Header=""
+                                                ItemsSource="{Binding GyneCheckPeriods}"
+                                                Style="{StaticResource expanderViewStyle}"
+                                                Tap="expander_Tap">
+                                <toolkit:ExpanderView.HeaderTemplate>
+                                    <DataTemplate>
+                                        <StackPanel Orientation="Vertical">
+                                            <TextBlock FontFamily="{StaticResource PhoneFontFamilySemiLight}"
+                                                    FontSize="{StaticResource PhoneFontSizeMediumLarge}"
+                                                    Foreground="{StaticResource PinkColor}"
+                                                    TextWrapping="Wrap"
+                                                    Text="{Binding Path=LocalizedResources.GyneControlReminderName, Source={StaticResource LocalizedStrings}}" />
+                                            <StackPanel Orientation="Horizontal" Margin="10,2,0,0">
+                                                <Line x:Name="Line" HorizontalAlignment="Left"
+                                                      Margin="10,0,0,0"
+                                                      Stretch="Fill" 
+                                                      Stroke="White" StrokeThickness="3" X1="0" X2="0" Y1="0" Y2="1"/>
+                                                <TextBlock FontFamily="{StaticResource PhoneFontFamilySemiLight}"
+                                                        FontSize="{StaticResource PhoneFontSizeMediumLarge}"
+                                                        Foreground="White"
+                                                        Margin="15,0,0,0"
+                                                        TextWrapping="Wrap"
+                                                        Text="{Binding}" />
+                                            </StackPanel>
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </toolkit:ExpanderView.HeaderTemplate>
+                            </toolkit:ExpanderView>
+
+                            <!--Breast reminder-->
+                            <toolkit:ExpanderView x:Name="expanderBreast"
+                                                Grid.Row="7" 
+                                                Grid.ColumnSpan="2" 
+                                                Grid.Column="0"
+                                                Header=""
+                                                ItemsSource="{Binding BreastCheckPeriods}"
+                                                Style="{StaticResource expanderViewStyle}"
+                                                Tap="expander_Tap">
+                                <toolkit:ExpanderView.HeaderTemplate>
+                                    <DataTemplate>
+                                        <StackPanel Orientation="Vertical">
+                                        <TextBlock FontFamily="{StaticResource PhoneFontFamilySemiLight}"
+                                                    FontSize="{StaticResource PhoneFontSizeMediumLarge}"
+                                                    Foreground="{StaticResource PinkColor}"
+                                        Text="{Binding Path=LocalizedResources.BreastControlReminderName, Source={StaticResource LocalizedStrings}}" />
+                                        <StackPanel Orientation="Horizontal" Margin="10,2,0,0">
+                                                <Line x:Name="Line" HorizontalAlignment="Left"
+                                                      Margin="10,0,0,0"
+                                                      Stretch="Fill" 
+                                                      Stroke="White" StrokeThickness="3" X1="0" X2="0" Y1="0" Y2="1"/>
+                                                <TextBlock FontFamily="{StaticResource PhoneFontFamilySemiLight}"
+                                                        FontSize="{StaticResource PhoneFontSizeMediumLarge}"
+                                                        Foreground="White"
+                                                        Margin="15,0,0,0"
+                                                        TextWrapping="Wrap"
+                                                        Text="{Binding}" />
+                                            </StackPanel>
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </toolkit:ExpanderView.HeaderTemplate>
+                            </toolkit:ExpanderView>
+
+                        </Grid>
+                    </ScrollViewer>
+            </phone:PivotItem>
+
+        </phone:Pivot>
+
+        <Image x:Name="imgBottomGradient" Source="/Assets/Images/PivotShadow-Bottom.png" 
+               Grid.Row="3" Stretch="UniformToFill"/>
+
+        <StackPanel
+              x:Name="dialogPanel"
+              Grid.RowSpan="4" 
+              Width="Auto" Height="Auto" 
+              Background="Black"
+              Opacity="0.5"
+              Visibility="{Binding ShowDialog,Converter={StaticResource BoolToVisibilityConverter}}">
+
+            <StackPanel  Margin="5,150,5,0" >
+                <StackPanel  x:Name="firstRow"
+                         Orientation="Horizontal"  
+                         HorizontalAlignment="Center">
+                    <TextBlock 
+                       Margin="5,57,0,56"
+                       VerticalAlignment="Center"
+                       Visibility="{Binding FirstRowText,Converter={StaticResource StringToVisibilityConverter}}" 
+                       Text="{Binding FirstRowText}"
+                       TextWrapping="Wrap"
+                       FontSize="28" />
+                    <toolkit:DatePicker 
+                            x:Name="pkStartDateCycle" 
+                            Margin="5,0,0,0"
+                            Visibility="{Binding ShowSelectStartDay,
+                                                 Converter={StaticResource BoolToVisibilityConverter}}"
+                            Value="{Binding SelectedStartCycle,
+                                            Mode=TwoWay}"
+                            ValueChanged="pkStartDateCycle_ValueChanged"
+                            ManipulationCompleted="pkEndDateCycle_ManipulationCompleted"
+                            VerticalAlignment="Center"
+                            HorizontalContentAlignment="Center" />
+                    <TextBlock x:Name="questionMark"
+                       VerticalAlignment="Center"
+                       Visibility="{Binding ShowSelectStartDay, Converter={StaticResource BoolToVisibilityConverter}}"
+                       Text="?"
+                       Margin="5,0,0,0"
+                       TextWrapping="Wrap"
+                       FontSize="28" />
+                </StackPanel>
+                <StackPanel x:Name="secondRow"    
+                        Visibility="{Binding SecondRowText,Converter={StaticResource StringToVisibilityConverter}}"
+                        Orientation="Horizontal"
+                        HorizontalAlignment="Center">
+                    <TextBlock
+                       x:Name="secondRowText"
+                       VerticalAlignment="Center"
+                       HorizontalAlignment="Center"
+                       Width="450"
+                       Text="{Binding SecondRowText}"
+                       TextWrapping="Wrap"
+                       FontSize="28" />
+                </StackPanel>
+                <StackPanel x:Name="thirdRow"                        
+                        Visibility="{Binding ThirdRowText,Converter={StaticResource StringToVisibilityConverter}}"
+                        Orientation="Horizontal"  
+                        HorizontalAlignment="Center">
+                    <TextBlock 
+                       VerticalAlignment="Center"
+                       Text="{Binding ThirdRowText}"
+                       TextWrapping="Wrap"
+                       FontSize="28" />
+                    <toolkit:DatePicker 
+                            x:Name="pkEndDateCycle" 
+                            Value="{Binding SelectedEndCycle,Mode=TwoWay}"
+                            Visibility="{Binding ShowSelectEndDay, Converter={StaticResource BoolToVisibilityConverter}}"            
+                            Margin="5,0,0,0" 
+                             ValueChanged="pkEndDateCycle_ValueChanged"
+                            ManipulationCompleted="pkEndDateCycle_ManipulationCompleted"
+                            VerticalAlignment="Center"
+                            HorizontalContentAlignment="Center" />
+                    <TextBlock 
+                       VerticalAlignment="Center"
+                       Visibility="{Binding ShowSelectEndDay, Converter={StaticResource BoolToVisibilityConverter}}"
+                       Text="?"
+                       Margin="5,0,0,0"
+                       TextWrapping="Wrap"
+                       FontSize="28" />
+                </StackPanel>
+                <StackPanel x:Name="forthRow"    
+                        Visibility="{Binding DelayedAdvancedEnd,Converter={StaticResource IntToVisibilityConverter}}"
+                        Orientation="Horizontal"  
+                        HorizontalAlignment="Center">
+                    <TextBlock
+                       x:Name="forthRowText"
+                       VerticalAlignment="Center"
+                       HorizontalAlignment="Center"
+                       Text="{Binding ForthRowText}"
+                       TextWrapping="Wrap"
+                       FontSize="28" 
+                       Width="450"/>
+                </StackPanel>
+                <Button x:Name="okBtn" 
+                    Grid.Row="5"
+                    Margin="0,35,0,0"
+                    Visibility="{Binding OkButtonContent, Converter={StaticResource StringToVisibilityConverter}}"
+                    Content="{Binding OkButtonContent}" 
+                    HorizontalAlignment="Center"
+                    Width="200"
+                    Click="okBtn_Click"/>
+                <Button x:Name="cancelBtn" 
+                    Grid.Row="6"
+                    Margin="0,30,0,0"
+                    Content="{Binding CancelButtonContent}" 
+                    Visibility="{Binding CancelButtonContent, Converter={StaticResource StringToVisibilityConverter}}"
+                    HorizontalAlignment="Center"
+                    Width="200"
+                    Click="cancelBtn_Click"/>
+            </StackPanel>
+        </StackPanel>
+
+      
+    </Grid>
+</phone:PhoneApplicationPage>

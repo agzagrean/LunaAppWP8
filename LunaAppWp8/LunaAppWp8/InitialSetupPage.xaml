@@ -1,0 +1,144 @@
+﻿<phone:PhoneApplicationPage
+    x:Class="LunaAppWp8.InitialSetupPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    SupportedOrientations="Portrait" Orientation="Portrait"  
+    mc:Ignorable="d"
+    shell:SystemTray.IsVisible="True"
+    shell:SystemTray.BackgroundColor="Transparent"
+    shell:SystemTray.Opacity="0.0">
+
+    <!--LayoutRoot is the root grid where all page content is placed-->
+    <Grid x:Name="LayoutRoot">
+        <Grid.Background>
+            <ImageBrush ImageSource="/LunaAppWp8;component/Assets/PivotBg.jpg"/>
+        </Grid.Background>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!--TitlePanel contains the name of the application and page title-->
+        <StackPanel Grid.Row="0" >
+            <StackPanel Orientation="Horizontal" Grid.Row="0"
+                            Height="120" 
+                            Margin="0,-20,0,0">
+                <Image Source="/Assets/ApplicationIcon.png" 
+                       Height="100"
+                       Margin="0,40,0,0" />
+                <TextBlock 
+                    Text="{Binding Path=LocalizedResources.ApplicationTitle, Source={StaticResource LocalizedStrings}}"
+                    Style="{StaticResource PhoneTextTitle1Style}" 
+                    Margin="0,35,0,0"
+                    Height="100"/>
+            </StackPanel>
+            <TextBlock 
+                    Text="{Binding Path=LocalizedResources.SetupPageTitle, Source={StaticResource LocalizedStrings}}"
+                    Style="{StaticResource PhoneTextTitle1Style}" 
+                    Foreground="{StaticResource PinkColor}"
+                    Margin="20,25,0,0"
+                    Height="100"/>
+        </StackPanel>
+
+        <!--ContentPanel - place additional content here-->
+        <Grid x:Name="ContentPanel" Grid.Row="1"
+              ScrollViewer.VerticalScrollBarVisibility="Auto"
+              Margin="14,0,10,0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="120"/>
+                <RowDefinition Height="0"/>
+                <RowDefinition Height="120"/>
+                <RowDefinition Height="0"/>
+                <RowDefinition Height="130"/>
+                <RowDefinition Height="0"/>
+                <RowDefinition Height="100"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="0.7*"/>
+                <ColumnDefinition Width="0.4*"/>
+            </Grid.ColumnDefinitions>
+
+            <TextBlock x:Name="tbPeriodDurationText" 
+                           Grid.Column="0" Grid.Row="0"
+                           Style="{StaticResource settingsTBlLarge}"
+                           Text="{Binding Path=LocalizedResources.PeriodDurationSettingText, Source={StaticResource LocalizedStrings}}" />
+            <TextBox x:Name="tbPeriodDuration" 
+                           Grid.Column="1" Grid.Row="0"
+                           Style="{StaticResource settingsTBoxLarge}"
+                           Text="{Binding SetupViewModel.PeriodDuration,Mode=TwoWay}"
+                           IsEnabled="{Binding MainViewModel.PeriodDurationEnabled}"
+                           GotFocus="tbPeriodCycle_GotFocus" 
+                           LostFocus="tbPeriodCycle_LostFocus">
+                <TextBox.InputScope>
+                    <InputScope>
+                        <InputScopeName NameValue="Number"/>
+                    </InputScope>
+                </TextBox.InputScope>
+            </TextBox>
+
+            <TextBlock x:Name="tbPeriodExplanation"
+                       Grid.Row="1"
+                       Style="{StaticResource setupTBlExplanation}"
+                       Text="{Binding Path=LocalizedResources.PeriodDurationSettingExplanation, Source={StaticResource LocalizedStrings}}" />
+
+            <TextBlock x:Name="tbCycleDurationText" 
+                           Grid.Column="0" Grid.Row="2"
+                           Style="{StaticResource settingsTBlLarge}"                          
+                           Text="{Binding Path=LocalizedResources.CycleDurationSettingText, Source={StaticResource LocalizedStrings}}" />
+            <TextBox x:Name="tbCycleDuration" 
+                           Grid.Column="1" Grid.Row="2"                          
+
+                           Style="{StaticResource settingsTBoxLarge}"                            
+                           Text="{Binding SetupViewModel.CycleDuration,Mode=TwoWay}"
+                           IsEnabled="{Binding MainViewModel.CycleDurationEnabled}"
+                           GotFocus="tbPeriodCycle_GotFocus" 
+                           LostFocus="tbPeriodCycle_LostFocus">
+                <TextBox.InputScope>
+                    <InputScope>
+                        <InputScopeName NameValue="Number"/>
+                    </InputScope>
+                </TextBox.InputScope>
+            </TextBox>
+
+            <TextBlock x:Name="tbCycleExplanation"
+                       Grid.Row="3"
+                       Style="{StaticResource setupTBlExplanation}"
+                       Text="{Binding Path=LocalizedResources.CycleDurationSettingExplanation, Source={StaticResource LocalizedStrings}}" />
+
+            <TextBlock x:Name="tbLastCycleText" 
+                           Grid.Column="0" Grid.Row="4"                          
+                           Style="{StaticResource settingsTBlLarge}"   
+                           TextWrapping="Wrap"
+                           Text="{Binding Path=LocalizedResources.LastPeriodStartedSetting, Source={StaticResource LocalizedStrings}}" Height="76" />
+            <toolkit:DatePicker 
+                x:Name="pkLastCycle" 
+                Grid.Column="1" Grid.Row="4"
+                VerticalAlignment="Center"
+                RenderTransformOrigin="0.483,0.896"
+                HorizontalContentAlignment="Center"
+                Value="{Binding SetupViewModel.LastPeriodDate,Mode=TwoWay}"
+                ManipulationCompleted="pkLastCycle_ManipulationCompleted"
+                ValueChanged="pkLastCycle_ValueChanged"/>
+
+            <TextBlock x:Name="pkLastCycleExplanation"
+                       Grid.Row="5" 
+                       Style="{StaticResource setupTBlExplanation}"
+                       Text="{Binding Path=LocalizedResources.SetupStartDateInFutureValidation, Source={StaticResource LocalizedStrings}}" />
+
+            <Button x:Name="setupBtn" Grid.Row="6" Grid.ColumnSpan="2" 
+                    Content="{Binding SetupViewModel.EndSetupButtonText, Mode=TwoWay}"
+                    IsEnabled="{Binding SetupViewModel.SetupCompleted, Mode=TwoWay}"
+                    Click="setupBtn_Click"/>
+        </Grid>
+    </Grid>
+
+</phone:PhoneApplicationPage>

@@ -1,0 +1,413 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="ResourceFlowDirection" xml:space="preserve">
+    <value>LeftToRight</value>
+    <comment>Controls the FlowDirection for all elements in the RootFrame. Set to the traditional direction of this resource file's language</comment>
+  </data>
+  <data name="ResourceLanguage" xml:space="preserve">
+    <value>en-US</value>
+    <comment>Controls the Language and ensures that the font for all elements in the RootFrame aligns with the app's language. Set to the language code of this resource file's language.</comment>
+  </data>
+  <data name="ApplicationTitle" xml:space="preserve">
+    <value>luna</value>
+  </data>
+  <data name="SetupPageTitle" xml:space="preserve">
+    <value>welcome</value>
+  </data>
+  <data name="CycleDurationSettingExplanation" xml:space="preserve">
+    <value>Cycles can range anywhere from 21 to 35 days in adults and from 21 to 45 days in young teens.</value>
+  </data>
+  <data name="CycleDurationSettingText" xml:space="preserve">
+    <value>How long is your cycle?</value>
+  </data>
+  <data name="LastPeriodStartedSetting" xml:space="preserve">
+    <value>When did your last cycle start?</value>
+  </data>
+  <data name="PeriodDurationSettingExplanation" xml:space="preserve">
+    <value>Menstrual period (usually from 3 to 5 days).</value>
+  </data>
+  <data name="PeriodDurationSettingText" xml:space="preserve">
+    <value>How long is your period?</value>
+  </data>
+  <data name="SetupCompletedBtnText" xml:space="preserve">
+    <value>Next</value>
+  </data>
+  <data name="SetupIncompletedBtnText" xml:space="preserve">
+    <value>Next</value>
+  </data>
+  <data name="CalendarPageTitle" xml:space="preserve">
+    <value>calendar</value>
+  </data>
+  <data name="HomePageTitle" xml:space="preserve">
+    <value>home</value>
+  </data>
+  <data name="StartingWeekDaySettingText" xml:space="preserve">
+    <value>Week starts with</value>
+  </data>
+  <data name="StartupPageSetting" xml:space="preserve">
+    <value>Startup page</value>
+  </data>
+  <data name="DaysToPeriodText" xml:space="preserve">
+    <value>days to period</value>
+    <comment>on drop control</comment>
+  </data>
+  <data name="Off" xml:space="preserve">
+    <value>Off</value>
+  </data>
+  <data name="On" xml:space="preserve">
+    <value>On</value>
+  </data>
+  <data name="PillAllarmText" xml:space="preserve">
+    <value>Pill reminder</value>
+  </data>
+  <data name="PillAllarmTimeText" xml:space="preserve">
+    <value>Alarm time</value>
+  </data>
+  <data name="Advanced" xml:space="preserve">
+    <value>Advanced</value>
+  </data>
+  <data name="MenstruationAllarmText" xml:space="preserve">
+    <value>Menstruation reminder</value>
+  </data>
+  <data name="OvulationAllarmText" xml:space="preserve">
+    <value>Ovulation reminder</value>
+  </data>
+  <data name="PeriodForecastExplanationStandard" xml:space="preserve">
+    <value>Based on your initial settings. Preffered option when on contraceptive pill.</value>
+  </data>
+  <data name="PeriodForecastIgnoreCycles" xml:space="preserve">
+    <value>Ignore unusually longer cycles</value>
+  </data>
+  <data name="PeriodForecastSetting" xml:space="preserve">
+    <value>Period forecast</value>
+  </data>
+  <data name="PillAlarmExplanation" xml:space="preserve">
+    <value>You will receive a notification to take your contraceptive pill.</value>
+  </data>
+  <data name="SettingsPageTitle" xml:space="preserve">
+    <value>Settings</value>
+  </data>
+  <data name="Standard" xml:space="preserve">
+    <value>Standard</value>
+  </data>
+  <data name="PeriodForecastExplanationAdvanced" xml:space="preserve">
+    <value>Based on a 12 months average. Improves prediction based on input.</value>
+  </data>
+  <data name="FertilityForecastExplanationAdvanced" xml:space="preserve">
+    <value>Based on a 12 months average. Improves prediction based on input.</value>
+  </data>
+  <data name="FertilityForecastExplanationStandard" xml:space="preserve">
+    <value>Based on your initial settings. Preffered option when on contraceptive pill.</value>
+  </data>
+  <data name="FertilityForecastSetting" xml:space="preserve">
+    <value>Fertility forecast</value>
+  </data>
+  <data name="AboutContent1" xml:space="preserve">
+    <value>Luna is a menstrual calendar for women.</value>
+  </data>
+  <data name="AboutContent2" xml:space="preserve">
+    <value>It provides an estimated forecast of period as well as an aproximative ovulation and fertility forecast, allowing you to keep track of your periods and giving you the possibility of a 3-month forecast.</value>
+  </data>
+  <data name="AboutContent3" xml:space="preserve">
+    <value>Alarms and reminders:
+- Menstruation reminder
+- Ovulation reminder
+- Contraceptive pill reminder
+- Gynecological check reminder
+- Breast check reminder
+Notifications:
+- Beginning and end of period
+Calendar
+- past periods
+
+- estimated ovulation
+- estimated future periods
+- share data with your physician by email</value>
+  </data>
+  <data name="AboutContent4" xml:space="preserve">
+    <value>- Device Identity (provides access to device-specific information such as a unique device ID, or the manufacturer or model name. )
+- User Identity (gives an app the ability to use an anonymous Microsoft account to identify the user. )</value>
+  </data>
+  <data name="AboutHeader" xml:space="preserve">
+    <value>About</value>
+  </data>
+  <data name="StatisticsHeader" xml:space="preserve">
+    <value>Statistics</value>
+  </data>
+  <data name="DayOfPeriodText" xml:space="preserve">
+    <value>days until end of period</value>
+  </data>
+  <data name="DelayedPeriodEndQuestion" xml:space="preserve">
+    <value>Did it end on</value>
+  </data>
+  <data name="DelayPeriodMessage" xml:space="preserve">
+    <value>This means your period is late.</value>
+  </data>
+  <data name="DelayPeriodQuestion" xml:space="preserve">
+    <value>Do you want to delay tracking?</value>
+  </data>
+  <data name="PeriodEarlierMessage" xml:space="preserve">
+    <value>You know, it's earlier with {0} days.</value>
+  </data>
+  <data name="PeriodEndedQuestion" xml:space="preserve">
+    <value>Did your period end on</value>
+  </data>
+  <data name="PeriodLaterMessage" xml:space="preserve">
+    <value>You know, it's later with {0} days.</value>
+  </data>
+  <data name="PeriodStartedQuestion" xml:space="preserve">
+    <value>Did your period start on</value>
+  </data>
+  <data name="CancelButton" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="ReplaceButton" xml:space="preserve">
+    <value>Replace</value>
+  </data>
+  <data name="OkButton" xml:space="preserve">
+    <value>Ok</value>
+  </data>
+  <data name="EndDateBeforeStartValidation" xml:space="preserve">
+    <value>The end of cycle you selected is before the confirmed start of cycle. Please pick another date.</value>
+  </data>
+  <data name="EndDateFarInFutureValidation" xml:space="preserve">
+    <value>This means your cycle lasted more than twice the average. Is this correct?</value>
+  </data>
+  <data name="EndDateTooCloseToStartValidation" xml:space="preserve">
+    <value>This means your cycle lasted less than 2 days. Is this correct?</value>
+  </data>
+  <data name="OverlapExistingPeriodValidation" xml:space="preserve">
+    <value>This start date is overlapping another existing cycle period. Do you want to modify existing period?</value>
+  </data>
+  <data name="StartDateInFutureValidation" xml:space="preserve">
+    <value>The date you selected is in the future. Please select another date.</value>
+  </data>
+  <data name="SetupStartDateInFutureValidation" xml:space="preserve">
+    <value>The date you selected is in the future. Is this correct?</value>
+  </data>
+  <data name="PasswordProtectionText" xml:space="preserve">
+    <value>Password protection</value>
+  </data>
+  <data name="ConfirmPinText" xml:space="preserve">
+    <value>Confirm pin</value>
+  </data>
+  <data name="EnterPinText" xml:space="preserve">
+    <value>Enter pin</value>
+  </data>
+  <data name="NewPinText" xml:space="preserve">
+    <value>New pin</value>
+  </data>
+  <data name="OldPinText" xml:space="preserve">
+    <value>Old pin</value>
+  </data>
+  <data name="ChangeButtonText" xml:space="preserve">
+    <value>Change</value>
+  </data>
+  <data name="ResetPinButtonText" xml:space="preserve">
+    <value>Reset pin</value>
+  </data>
+  <data name="SetPinButtonText" xml:space="preserve">
+    <value>Set pin</value>
+  </data>
+  <data name="PinValidationInvalidSize" xml:space="preserve">
+    <value>The pin must have 4 digits.</value>
+  </data>
+  <data name="PinValidationMissing" xml:space="preserve">
+    <value>The {0} cannot be empty. You must enter the pin.</value>
+  </data>
+  <data name="PinValidationNewPinNotMatch" xml:space="preserve">
+    <value>New pin and Confirm pin does not match.</value>
+  </data>
+  <data name="PinValidationOldPinNotMatch" xml:space="preserve">
+    <value>Old pin you introduced doesn't match your existing pin.</value>
+  </data>
+  <data name="ApplicationInitialUri" xml:space="preserve">
+    <value>/InitialSetupPage.xaml</value>
+  </data>
+  <data name="BreastControlReminderContent" xml:space="preserve">
+    <value>Luna says your {0} medical check is approaching.</value>
+  </data>
+  <data name="BreastControlReminderName" xml:space="preserve">
+    <value>Breast control reminder</value>
+  </data>
+  <data name="GyneControlReminderContent" xml:space="preserve">
+    <value>Luna says your {0} medical check is approaching.</value>
+  </data>
+  <data name="GyneControlReminderName" xml:space="preserve">
+    <value>Gynecological check reminder</value>
+  </data>
+  <data name="MenstruationReminderContent" xml:space="preserve">
+    <value>Luna estimates your mestruation will begin tomorrow.</value>
+  </data>
+  <data name="MenstruationReminderName" xml:space="preserve">
+    <value>Menstruation reminder</value>
+  </data>
+  <data name="Monthly" xml:space="preserve">
+    <value>Monthly</value>
+  </data>
+  <data name="OvulationReminderContent" xml:space="preserve">
+    <value>Luna estimates your fertility period will start tomorrow.</value>
+  </data>
+  <data name="OvulationReminderName" xml:space="preserve">
+    <value>Ovulation reminder</value>
+  </data>
+  <data name="PillAlarmContent" xml:space="preserve">
+    <value>Luna says it's time to take your pill.</value>
+  </data>
+  <data name="PillAlarmName" xml:space="preserve">
+    <value>Pill Alarm by Luna</value>
+  </data>
+  <data name="SixMonths" xml:space="preserve">
+    <value>Every 6 months</value>
+  </data>
+  <data name="ThreeMonths" xml:space="preserve">
+    <value>Every 3 months</value>
+  </data>
+  <data name="Yearly" xml:space="preserve">
+    <value>Anually</value>
+  </data>
+  <data name="None" xml:space="preserve">
+    <value>Never</value>
+  </data>
+  <data name="FertilityDay" xml:space="preserve">
+    <value>- Fertility day</value>
+  </data>
+  <data name="Legend" xml:space="preserve">
+    <value>Legend</value>
+  </data>
+  <data name="MenstruationDay" xml:space="preserve">
+    <value>- Menstruation day</value>
+  </data>
+  <data name="MenstruationEndReminderContent" xml:space="preserve">
+    <value>Luna says your period ended yesterday.Is it true?</value>
+  </data>
+  <data name="MenstruationStartReminderContent" xml:space="preserve">
+    <value>Luna says your period just started yesterday.Is it true?</value>
+  </data>
+  <data name="OvulationDay" xml:space="preserve">
+    <value>- Ovulation day</value>
+  </data>
+  <data name="RateItButtonContent" xml:space="preserve">
+    <value>Give us your opinion!</value>
+  </data>
+  <data name="ShareItButtonContent" xml:space="preserve">
+    <value>Spread the word!</value>
+  </data>
+</root>
